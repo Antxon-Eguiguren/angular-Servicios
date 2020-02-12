@@ -1,0 +1,10 @@
+<p>Listado de personas</p>
+<ul>
+    <li *ngFor="let persona of arrPersonas">
+        {{ persona.nombre }}
+        {{ persona.apellidos }}
+        {{ persona.edad }}
+    </li>
+</ul>
+
+<button (click)="manejarClick()">Filtrar Personas</button>
