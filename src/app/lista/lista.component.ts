@@ -16,12 +16,27 @@ export class ListaComponent implements OnInit {
     this.edad = 30;
   }
 
-  ngOnInit() {
-    this.arrPersonas = this.personasService.getAll();
+  async ngOnInit() {
+    // Llamada normal
+    // this.arrPersonas = this.personasService.getAll();
+
+    // Llamada a través de la promesa
+    // this.personasService.getAllPromise()
+    //   .then(pArrPersonas => {
+    //     this.arrPersonas = pArrPersonas;
+    //   }).catch(err => console.log(err));
+
+    // Llamada a través de la promesa con ASYNC/AWAIT
+    this.arrPersonas = await this.personasService.getAllPromise();
+
   }
 
-  manejarClick() {
-    this.arrPersonas = this.personasService.getByEdad(this.edad);
+  async manejarClick() {
+    // Llamada normal
+    // this.arrPersonas = this.personasService.getByEdad(this.edad);
+
+    // Llamada a través de la promesa con ASYNC/AWAIT
+    this.arrPersonas = await this.personasService.getByEdadPromise(this.edad);
   }
 
 }
