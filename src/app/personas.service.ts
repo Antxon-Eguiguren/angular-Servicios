@@ -10,7 +10,7 @@ export class PersonasService {
 
   constructor() {
     this.arrPersonas = [
-      new Persona('Antxon', 'Eguiguren', 34),
+      new Persona('Antxon', 'Girón', 34),
       new Persona('Julia', 'Besada', 32),
       new Persona('Aitziber', 'Redondo', 30),
       new Persona('Jorge', 'Torroglosa', 25),
@@ -47,6 +47,30 @@ export class PersonasService {
       reject('Error');
     });
     return prom;
+  }
+
+  // Método que filtra por nombre y/o apellidos y se ejecuta a través de una promesa
+  getByNamePromise(pString: string): Promise<Persona[]> {
+    const prom = new Promise<Persona[]>((resolve, reject) => {
+      resolve(this.arrPersonas.filter(persona => {
+        const nombreCompleto = this.eliminarDiacriticos(this.eliminarEspacios(persona.nombre + persona.apellidos));
+        const pStringNew = this.eliminarDiacriticos(this.eliminarEspacios(pString));
+        return nombreCompleto.toLowerCase().includes(pStringNew.toLowerCase());
+      }));
+      reject('Error');
+    });
+    return prom;
+  }
+
+  // Función para eliminar espacios de un string
+  eliminarEspacios(pCadena: string): string {
+    const regex = / /g;
+    return pCadena.replace(regex, '');
+  }
+
+  // Función para eliminar los acentos y caracteres raros
+  eliminarDiacriticos(texto) {
+    return texto.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
   }
 
 }

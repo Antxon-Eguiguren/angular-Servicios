@@ -39,4 +39,13 @@ export class ListaComponent implements OnInit {
     this.arrPersonas = await this.personasService.getByEdadPromise(this.edad);
   }
 
+  async manejarCampoTexto($event) {
+    // this.personasService.getByNamePromise($event.target.value)
+    //   .then(pArrPersonas => {
+    //     this.arrPersonas = pArrPersonas;
+    //   }).catch(err => console.log(err));
+
+    this.arrPersonas = await this.personasService.getByNamePromise($event.target.value);
+  }
+
 }
