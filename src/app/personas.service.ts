@@ -69,7 +69,7 @@ export class PersonasService {
   }
 
   // Función para eliminar los acentos y caracteres raros
-  eliminarDiacriticos(texto) {
+  eliminarDiacriticos(texto: string): string {
     return texto.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
   }
 
