@@ -9,6 +9,7 @@ import { PlanetasService } from './planetas.service';
 export class AppComponent implements OnInit {
 
   randomNum: number;
+  arrNombres: string[];
 
   constructor(private planetasService: PlanetasService) { }
 
@@ -23,5 +24,8 @@ export class AppComponent implements OnInit {
 
     const response = await this.planetasService.getRandomNum();
     this.randomNum = response.success;
+
+    this.planetasService.getNames()
+      .then(arr => console.log(arr));
   }
 }
