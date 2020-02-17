@@ -1,0 +1,13 @@
+<div class="botones">
+    <button (click)="cambiarPagina(false)" [disabled]="paginaActual === 1">Anterior</button>
+    <button (click)="cambiarPagina(true)" [disabled]="paginaActual === numPaginas">Siguiente</button>
+</div>
+<h4>Página {{paginaActual}} / {{numPaginas}}</h4>
+<div class="wrapper">
+    <h1>Listado de Planetas de Star Wars leido desde la API de Star Wars</h1>
+    <div class="planeta" *ngFor="let planeta of arrPlanetas">
+        <h4>Nombre: {{ planeta.name }}</h4>
+        <p>Clima: {{ planeta.climate }}</p>
+        <p>Población: {{ planeta.population }}</p>
+    </div>
+</div>
